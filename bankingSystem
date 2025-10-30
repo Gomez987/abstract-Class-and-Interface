@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+interface BankAccount {
+    void deposit(double amount);
+    void withdraw(double amount);
+}
+
+
+
+class SimpleAccount implements BankAccount {
+    double balance = 0;
+
+    public void deposit(double amount) {
+        balance += amount;
+        System.out.println("Deposited: " + amount + ", Balance: " + balance);
+    }
+
+    public void withdraw(double amount) {
+        balance -= amount;
+        System.out.println("Withdrew: " + amount + ", Balance: " + balance);
+    }
+}
+
+
+
+public class BankingSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        SimpleAccount acc = new SimpleAccount();
+
+        System.out.print("Enter deposit amount: ");
+        double d = sc.nextDouble();
+        acc.deposit(d);
+
+        System.out.print("Enter withdraw amount: ");
+        double w = sc.nextDouble();
+        acc.withdraw(w);
+
+        sc.close();
+    }
+}
