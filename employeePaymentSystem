@@ -1,0 +1,64 @@
+import java.util.Scanner;
+
+abstract class Employee {
+    String name;
+    double ratePerHour;
+    double hoursWorked;
+
+    Employee(String name, double ratePerHour, double hoursWorked) {
+        this.name = name;
+        this.ratePerHour = ratePerHour;
+        this.hoursWorked = hoursWorked;
+    }
+
+    abstract double calculatePay();
+}
+
+
+
+class FullTimeEmployee extends Employee {
+    FullTimeEmployee(String name, double ratePerHour, double hoursWorked) {
+        super(name, ratePerHour, hoursWorked);
+    }
+
+    double calculatePay() {
+        return ratePerHour * hoursWorked;
+    }
+}
+
+
+
+class PartTimeEmployee extends Employee {
+    PartTimeEmployee(String name, double ratePerHour, double hoursWorked) {
+        super(name, ratePerHour, hoursWorked);
+    }
+
+    double calculatePay() {
+        return ratePerHour * hoursWorked;
+    }
+}
+
+
+
+public class EmployeePaymentSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter employee type (full/part): ");
+        String type = sc.nextLine().toLowerCase();
+
+        System.out.print("Enter name, rate per hour, and hours (e.g., Ana 150 8): ");
+        String name = sc.next();
+        double rate = sc.nextDouble();
+        double hours = sc.nextDouble();
+
+        Employee emp;
+        if (type.equals("full"))
+            emp = new FullTimeEmployee(name, rate, hours);
+        else
+            emp = new PartTimeEmployee(name, rate, hours);
+
+        System.out.println("Pay: " + emp.calculatePay());
+        sc.close();
+    }
+}
